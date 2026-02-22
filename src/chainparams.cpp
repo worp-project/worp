@@ -71,7 +71,7 @@ public:
         consensus.BIP34Hash = uint256();
         consensus.BIP65Height = 0;
         consensus.BIP66Height = 0;
-	consensus.powLimit = uint256S("00000fffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
+	    consensus.powLimit = uint256S("00000fffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
         consensus.nPowTargetTimespan = 24 * 60 * 60; // 1 day
         consensus.nPowTargetSpacing = 90; // 90 sec
         consensus.fPowAllowMinDifficultyBlocks = false;
@@ -79,7 +79,7 @@ public:
         consensus.nRuleChangeActivationThreshold = 720; // 75% of 8064
         consensus.nMinerConfirmationWindow = 960; // nPowTargetTimespan / nPowTargetSpacing * 4
 
-	consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].bit = 28;
+	    consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].bit = 28;
         consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].nStartTime = Consensus::BIP9Deployment::ALWAYS_ACTIVE;
         consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].nTimeout = Consensus::BIP9Deployment::NO_TIMEOUT;
 
@@ -113,14 +113,11 @@ public:
         m_assumed_blockchain_size = 22;
         m_assumed_chain_state_size = 3;
 
-	genesis = CreateGenesisBlock(1766620800, 11964, 0x1e0ffff0, 1, 50 * COIN);
+	    genesis = CreateGenesisBlock(1766620800, 11964, 0x1e0ffff0, 1, 50 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
 
-
-	assert(consensus.hashGenesisBlock == uint256S("0xdca4099d2e30bfa035f4592a008744475ed18289246cd9ad488abab258f84aae"));
-	assert(genesis.hashMerkleRoot == uint256S("0xa0b6ec496d3c9be48f0157a6dd6c3f2906acd5b450aa28c884b45488208dcf31"));
-
-
+	    assert(consensus.hashGenesisBlock == uint256S("0xdca4099d2e30bfa035f4592a008744475ed18289246cd9ad488abab258f84aae"));
+	    assert(genesis.hashMerkleRoot == uint256S("0xa0b6ec496d3c9be48f0157a6dd6c3f2906acd5b450aa28c884b45488208dcf31"));
 
         // Note that of those which support the service bits prefix, most only support a subset of
         // possible options.
@@ -128,10 +125,10 @@ public:
         // service bits we want, but we should get them updated to support all service bits wanted by any
         // release ASAP to avoid it where possible.
 
-        // vSeeds intentionally empty for initial launch
-        vSeeds.clear();
+        // dns seeds
+        vSeeds.emplace_back("nodes.worpcoin.com");
         vFixedSeeds.clear();
-
+		
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,73);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,50);
@@ -148,8 +145,9 @@ public:
         fMineBlocksOnDemand = false;
 
         checkpointData = {
-	    {
-		{0, uint256S("79f3987b85f50ca86752c031e3bf8640bb426a8dc926b68bf1388a3ac756aba6")},
+	    	{
+				{0, uint256S("79f3987b85f50ca86752c031e3bf8640bb426a8dc926b68bf1388a3ac756aba6")},
+				{20000, uint256S("ddfeb176297f80dd8a27a480e07b72b57de2a6ebfd6d0db274f552d47ae9ea0c")},
             }
         };
 
@@ -213,7 +211,7 @@ public:
         m_assumed_blockchain_size = 2;
         m_assumed_chain_state_size = 1;
 
-	genesis = CreateGenesisBlock(1766361600, 642806, 0x1e0ffff0, 1, 50 * COIN);
+	    genesis = CreateGenesisBlock(1766361600, 642806, 0x1e0ffff0, 1, 50 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
 
         assert(consensus.hashGenesisBlock == uint256S("0xfb570c30fb6ea77717b34c488344079039815defce63235ab07c5140e4805a12"));
@@ -277,8 +275,8 @@ public:
         consensus.nMinerConfirmationWindow = 120;
         consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].bit = 28;
         consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].nStartTime = Consensus::BIP9Deployment::ALWAYS_ACTIVE;
-        consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].nTimeout = Consensus::BIP9Deployment::NO_TIMEOUT
-;
+        consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].nTimeout = Consensus::BIP9Deployment::NO_TIMEOUT;
+		
         consensus.vDeployments[Consensus::DEPLOYMENT_CSV].bit = 0;
         consensus.vDeployments[Consensus::DEPLOYMENT_CSV].nStartTime = Consensus::BIP9Deployment::ALWAYS_ACTIVE;
         consensus.vDeployments[Consensus::DEPLOYMENT_CSV].nTimeout = Consensus::BIP9Deployment::NO_TIMEOUT;
@@ -304,7 +302,7 @@ public:
 
         // UpdateVersionBitsParametersFromArgs(args);
 
-	genesis = CreateGenesisBlock(1766275200, 0, 0x207fffff, 1, 50 * COIN);
+	    genesis = CreateGenesisBlock(1766275200, 0, 0x207fffff, 1, 50 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
 
 
